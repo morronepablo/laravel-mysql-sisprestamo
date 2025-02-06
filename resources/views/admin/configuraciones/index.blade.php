@@ -12,14 +12,11 @@
                 <div class="card-header">
                     <h3 class="card-title my-1">Configuraciones registradas</h3>
                     <div class="card-tools">
-                        {{-- <a href="{{ route('admin.roles.reporte') }}" target="_blank" class="btn btn-secondary btn-sm"><i
-                            class="fa fa-file-pdf"></i>
-                        Reporte</a> --}}
-                        {{-- @can('Crear rol') --}}
-                        <a href="{{ route('admin.configuracion.create') }}" class="btn btn-primary btn-sm"><i
-                                class="fa fa-plus"></i>
-                            Crear nuevo</a>
-                        {{-- @endcan --}}
+                        @can('admin.configuracion.create')
+                            <a href="{{ route('admin.configuracion.create') }}" class="btn btn-primary btn-sm"><i
+                                    class="fa fa-plus"></i>
+                                Crear nuevo</a>
+                        @endcan
                     </div>
                 </div>
 
@@ -59,53 +56,53 @@
 
                                     <td class="text-center">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            {{-- @can('Ver datos del rol') --}}
-                                            <a href="{{ route('admin.configuracion.show', $configuracion->id) }}"
-                                                class="btn btn-info btn-sm"
-                                                style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            {{-- @endcan
-                                        @if ($role->name !== 'Administrador')
-                                            @can('Editar rol') --}}
-                                            <a href="{{ route('admin.configuracion.edit', $configuracion->id) }}"
-                                                class="btn btn-success btn-sm" style="border-radius: 0;">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                            {{-- @endcan
-                                            @can('Eliminar rol') --}}
-                                            {{-- action="{{ route('admin.roles.destroy', $role->id) }}" --}}
-                                            <form action="{{ route('admin.configuracion.destroy', $configuracion->id) }}"
-                                                method="POST" onclick="preguntar{{ $configuracion->id }}(event)"
-                                                id="miFormulario{{ $configuracion->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                            {{-- @endcan --}}
-                                            <script>
-                                                function preguntar{{ $configuracion->id }}(event) {
-                                                    event.preventDefault();
-                                                    Swal.fire({
-                                                        title: "Estas seguro?",
-                                                        text: "¡No podrás revertir esto!",
-                                                        icon: "warning",
-                                                        showCancelButton: true,
-                                                        confirmButtonColor: "#3085d6",
-                                                        cancelButtonColor: "#d33",
-                                                        confirmButtonText: "¡Sí, bórralo!"
-                                                    }).then((result) => {
-                                                        if (result.isConfirmed) {
-                                                            var form = $('#miFormulario{{ $configuracion->id }}');
-                                                            form.submit();
-                                                        }
-                                                    });
-                                                }
-                                            </script>
-                                            {{-- @endif --}}
+                                            @can('admin.configuracion.show')
+                                                <a href="{{ route('admin.configuracion.show', $configuracion->id) }}"
+                                                    class="btn btn-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Ver configuración">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            @endcan
+                                            @can('admin.configuracion.edit')
+                                                <a href="{{ route('admin.configuracion.edit', $configuracion->id) }}"
+                                                    class="btn btn-success btn-sm" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Editar configuración">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>
+                                            @endcan
+                                            @can('admin.configuracion.destroy')
+                                                <form action="{{ route('admin.configuracion.destroy', $configuracion->id) }}"
+                                                    method="POST" onclick="preguntar{{ $configuracion->id }}(event)"
+                                                    id="miFormulario{{ $configuracion->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title="Eliminar configuración"
+                                                        style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                <script>
+                                                    function preguntar{{ $configuracion->id }}(event) {
+                                                        event.preventDefault();
+                                                        Swal.fire({
+                                                            title: "Estas seguro?",
+                                                            text: "¡No podrás revertir esto!",
+                                                            icon: "warning",
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: "#3085d6",
+                                                            cancelButtonColor: "#d33",
+                                                            confirmButtonText: "¡Sí, bórralo!"
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                var form = $('#miFormulario{{ $configuracion->id }}');
+                                                                form.submit();
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>
@@ -236,6 +233,14 @@
 
             // Colocar los botones dentro del contenedor correcto
             table.buttons().container().appendTo('#configuraciones-table_wrapper .col-md-12:eq(1)');
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
         });
     </script>
 @stop

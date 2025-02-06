@@ -39,7 +39,7 @@ class ConfiguracionController extends Controller
             'telefono' => 'required',
             'email' => 'required',
             'moneda' => 'required',
-            'logo' => 'required',
+            // 'logo' => 'required',
         ]);
 
         $configuracion = new Configuracion();
@@ -50,7 +50,7 @@ class ConfiguracionController extends Controller
         $configuracion->email = $request->email;
         $configuracion->web = $request->web;
         $configuracion->moneda = $request->moneda;
-        $configuracion->logo = $request->file('logo')->store('logos', 'public');
+        $configuracion->logo = $request->file('logo') ? $request->file('logo')->store('logos', 'public') : 'logos/logo.jpg';
         $configuracion->save();
 
         return redirect()->route('admin.configuracion.index')

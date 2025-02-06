@@ -167,7 +167,7 @@
                                 <div class="form-group">
                                     <label for="logo">Logo</label> <b class="text-danger">(*)</b>
                                     <input type="file" id="file" name="logo" accept=".jpg,.jpeg,.png"
-                                        class="form-control {{ $errors->has('moneda') ? 'is-invalid' : '' }}" required>
+                                        class="form-control {{ $errors->has('moneda') ? 'is-invalid' : '' }}">
                                     @error('logo')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror

@@ -190,7 +190,7 @@ return [
     |
     */
 
-    'classes_body' => '',
+    'classes_body' => 'layout-navbar-fixed',
     'classes_brand' => '',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
@@ -303,17 +303,89 @@ return [
             'text' => 'Configuración',
             'url' => 'admin/configuraciones',
             'icon' => 'fas fa-fw fa-cogs',
-            // 'can'  => 'ver-configuracion',
+            'can'  => 'ver-configuracion',
             // 'classes' => 'bg-blue text-white'
         ],
         [
             'text' => 'Roles',
             'icon' => 'fas fa-fw fa-user-check',
-            // 'can'  => 'ver-roles',
+            'can'  => 'ver-roles',
             'submenu' => [
                 [
                     'text' => 'Listado Roles',
                     'url' => 'admin/roles',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Usuarios',
+            'icon' => 'fas fa-fw fa-users',
+            'can'  => 'ver-usuarios',
+            'submenu' => [
+                [
+                    'text' => 'Listado Usuarios',
+                    'url' => 'admin/usuarios',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Clientes',
+            'icon' => 'fas fa-fw fa-id-card',
+            'can'  => 'ver-clientes',
+            'submenu' => [
+                [
+                    'text' => 'Listado Clientes',
+                    'url' => 'admin/clientes',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Préstamos',
+            'icon' => 'fas fa-fw fa-hand-holding-usd',
+            'can'  => 'ver-prestamos',
+            'submenu' => [
+                [
+                    'text' => 'Listado Préstamos',
+                    'url' => 'admin/prestamos',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Pagos',
+            'icon' => 'fas fa-fw fa-money-bill-wave',
+            'can'  => 'ver-pagos',
+            'submenu' => [
+                [
+                    'text' => 'Listado Pagos',
+                    'url' => 'admin/pagos',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Notificaciones',
+            'icon' => 'fas fa-fw fa-envelope',
+            'can'  => 'ver-notificaciones',
+            'submenu' => [
+                [
+                    'text' => 'Listado Notificaciones',
+                    'url' => 'admin/notificaciones',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Backups',
+            'icon' => 'fas fa-fw fa-database',
+            'can'  => 'ver-backups',
+            'submenu' => [
+                [
+                    'text' => 'Listado Backups',
+                    'url' => 'admin/backups',
                     'icon' => 'fas fa-fw fa-list',
                 ],
             ],
@@ -355,6 +427,16 @@ return [
     */
 
     'plugins' => [
+        'FontAwesome' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'
+                ],
+            ],
+        ],
         'Datatables' => [
             'active' => true,
             'files' => [
@@ -436,7 +518,7 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

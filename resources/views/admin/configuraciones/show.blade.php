@@ -134,9 +134,8 @@
 @section('css')
     <style>
         input:disabled {
-            background-color: white !important;
-            /* font-weight: bold !important; */
-            color: #45b817 !important;
+            background-color: rgb(219, 248, 191) !important;
+            color: #277608 !important;
         }
 
         .input-group-text {
